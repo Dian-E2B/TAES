@@ -19,14 +19,14 @@ if (isset($_SESSION['is_logged_in'])) {
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light ftco-navbar-light-2" id="ftco-navbar">
 	<div class="container">
-		<a class="navbar-brand" href="index.php">ThriftSthetic</a>
+		<a class="navbar-brand" href="index.php" style="font-weight: 900;">ThriftSthetic</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="oi oi-menu"></span> Menu
 		</button>
 
-		<div class="collapse navbar-collapse" id="ftco-nav">
+		<div class="collapse navbar-collapse" id="ftco-nav" style="font-weight: 900 !important;">
 			<ul class="navbar-nav ml-auto">
-			<li class="nav-item">
+				<li class="nav-item">
 					<a href="index.php" class="nav-link">
 						Home
 					</a>

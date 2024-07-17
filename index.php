@@ -67,14 +67,12 @@ if ($includeSweetAlert) {
 								<div class="item">
 									<div class="product">
 										<a href="product-details.php?product_id=<?php echo $row['id']; ?>" class="img-prod">
-											<img class="img-fluid" src="images/products/<?php echo $row['photo']; ?>"
-												alt="No Image Available">
+											<img class="img-fluid" src="images/products/<?php echo $row['photo']; ?>" alt="No Image Available">
 											<span class="status">New</span>
 										</a>
 										<div class="text pt-3 px-3">
 											<h3>
-												<a
-													href="product-details.php?product_id=<?php echo $row['id']; ?>"><?php echo $row['name']; ?></a>
+												<a href="product-details.php?product_id=<?php echo $row['id']; ?>"><?php echo $row['name']; ?></a>
 											</h3>
 											<div class="d-flex">
 												<div class="pricing">
@@ -88,7 +86,7 @@ if ($includeSweetAlert) {
 									</div>
 								</div>
 
-								<?php
+						<?php
 							}
 						} catch (PDOException $e) {
 							echo "There is some problem in connection: " . $e->getMessage();
@@ -138,8 +136,7 @@ LIMIT 8;
 						<div class="product">
 
 							<a href="product-details.php?product_id=<?php echo $row['id']; ?>" class="img-prod">
-								<img class="img-fluid" src="images/products/<?php echo $row['photo'] ?>"
-									alt="No Image Available">
+								<img class="img-fluid" src="images/products/<?php echo $row['photo'] ?>" alt="No Image Available">
 							</a>
 							<div class="text py-3 px-3">
 								<h3>
@@ -162,13 +159,12 @@ LIMIT 8;
 						</div>
 					</div>
 
-					<?php
+			<?php
 					if ($counter % 4 == 3) {
 						echo '</div>';
 					}
 					$counter++;
 				}
-
 			} catch (PDOException $e) {
 				echo "There is some problem in connection: " . $e->getMessage();
 			}
@@ -197,8 +193,7 @@ LIMIT 8;
 							<div class="carousel-testimony owl-carousel ftco-owl">
 								<div class="item">
 									<div class="testimony-wrap py-4 pb-5">
-										<div class="user-img mb-4"
-											style="background-image: url(images/profile/person_1.jpg)">
+										<div class="user-img mb-4" style="background-image: url(images/profile/person_1.jpg)">
 											<span class="quote d-flex align-items-center justify-content-center">
 												<i class="icon-quote-left"></i>
 											</span>
@@ -207,10 +202,8 @@ LIMIT 8;
 											<p class="name">J&L</p>
 											<ul class="ftco-footer-social list-unstyled mt-5">
 												<li class="ftco-animate"><a><span class="icon-twitter"></span></a></li>
-												<li class="ftco-animate"><a href="#"><span
-															class="icon-facebook"></span></a></li>
-												<li class="ftco-animate"><a href="#"><span
-															class="icon-instagram"></span></a></li>
+												<li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+												<li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
 											</ul>
 										</div>
 									</div>
@@ -283,7 +276,7 @@ LIMIT 8;
 	<script>
 		//Top navigation bar add/remove class
 		//To change the navigation style
-		$(document).ready(function () {
+		$(document).ready(function() {
 			$("#ftco-navbar").removeClass("ftco-navbar-light-2");
 		});
 	</script>

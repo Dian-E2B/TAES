@@ -62,7 +62,12 @@
                 </li>
             </ul>
         </li>
-
+        <li>
+            <a href="archives.php">
+                <i class="material-icons">archive</i>
+                <span>Archives</span>
+            </a>
+        </li>
         <li>
             <a href="../application/controllers/signout.php">
                 <i class="material-icons">logout</i>
