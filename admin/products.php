@@ -8,7 +8,7 @@ if (isset($_POST['delete-product'])) {
 
     $data = ['id' => $_GET['id']];
 
-    $query = "UPDATE products SET product_status = 0 WHERE id = :id";
+    $query = "UPDATE products SET product_status = 0, date_deleted = NOW() WHERE id = :id";
     $function->delete($query, $data);
 }
 
