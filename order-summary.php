@@ -17,7 +17,7 @@
         <div class="col-md-9 ftco-animate text-center">
           <h1 class="mb-0 bread">Order Summary</h1>
           <p class="breadcrumbs">
-            <span class="mr-2"><a href="index.php">Home</a></span> 
+            <span class="mr-2"><a href="index.php">Home</a></span>
             <span>Order Summary</span>
           </p>
         </div>
@@ -46,83 +46,134 @@
                 <div class="info">
                   <p style="color: #4f4f4f;"><b>Order Info</b></p>
                   <div class="row">
-                   <div class="col-md-6">
-                    <p><span>Order ID </span><b><?php echo $order_summary['order_id']; ?></b></p>
-                    <p><span>Payment Method </span><b>Cash on Delivery</b></p>
-                    <p><span>Date Ordered </span><b><?php echo $order_summary['ordered_date']; ?></b></p>
-                   <p><span>Total </span><b>PHP <?php echo number_format($order_summary['total'], 2); ?></b></p>
-                  </div>
-               </div>
-             </div>
-           </div>
-         </div>
-       </div>
-     </div>
-   </div>
-
-   <div class="row">
-    <div class="col-md-12 mt-5 ftco-animate">
-      <div class="cart-list">
-        <table class="table">
-          <thead class="thead-primary">
-            <tr class="text-center">
-              <th>&nbsp;</th>
-              <th>Product</th>
-              <th>Price</th>
-              <th>Quantity</th>
-            </tr>
-          </thead>
-          <tbody>
-
-            <?php
-
-            try {
-
-              $order_id = $_GET['order_id'];
-
-              $query = "SELECT cart.cart_id, products.id, products.name, products.photo, products.price, cart.quantity, (products.price * cart.quantity) AS 'total' FROM cart INNER JOIN products ON cart.product_id = products.id WHERE cart_code = ". $order_id ." GROUP BY cart.product_id ORDER BY cart_id";
-
-              $rows = $function->selectAll($query);
-              foreach ($rows as $row) { ?>
-
-                <tr class="text-center">
-                  <td class="image-prod">
-                    <a class="img" style="background-image:url(<?php echo 'images/products/' . $row['photo']; ?>);"></a>
-                  </td>
-                  <td class="product-name">
-                    <h3><?php echo $row['name']; ?></h3>
-                  </td>
-                  <td class="price">PHP <?php echo number_format($row['price'], 2); ?></td>
-                  <td class="quantity">
-                    <div class="input-group">
-                      <input type="text" class="form-control" value="<?php echo $row['quantity']; ?>" disabled>
+                    <div class="col-md-6">
+                      <p><span>Order ID </span><b><?php echo $order_summary['order_id']; ?></b></p>
+                      <p><span>Payment Method </span><b>Cash on Delivery</b></p>
+                      <p><span>Date Ordered </span><b><?php echo $order_summary['ordered_date']; ?></b></p>
+                      <p><span>Total </span><b>PHP <?php echo number_format($order_summary['total'], 2); ?></b></p>
                     </div>
-                  </td>
-                </tr>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <?php
+            $order_id = $_GET['order_id'];
+            $query1 = "SELECT ordered_date from orders where order_id = " . $order_id;
+            $rows1 = $function->selectAll($query1);
+            $givenTime = new DateTime($rows1[0]['ordered_date']);
+            $currentTime = new DateTime();
+            $interval = $currentTime->getTimestamp() - $givenTime->getTimestamp();
 
-                <?php
-              }
+            // Debugging output
+            echo "Current Time: " . $currentTime->format('c') . "<br>";
+            echo "Given Time: " . $givenTime->format('c') . "<br>";
+            echo "Interval: " . $interval . "<br>";
 
-            } catch (PDOException $e) {
-              echo "There is some problem in connection: " . $e->getMessage();
+            if ($interval < 600) {
+            ?>
+              <div class="">
+                <form id="cancelOrderForm" method="post" action="application/controllers/orderexecute.php">
+                  <input type="hidden" name="order_id" value="<?php echo htmlspecialchars($order_id); ?>">
+                  <button type="submit" class="btn btn-warning btn-sm p-3" id="cancelOrderButton">CANCEL ORDER</button>
+                </form>
+              </div>
+            <?php
             }
 
             ?>
+          </div>
+        </div>
 
-          </tbody>
-        </table>
+      </div>
+
+
+
+
+
+
+      <div class="row">
+        <div class="col-md-12 mt-5 ftco-animate">
+          <div class="cart-list">
+            <table class="table">
+              <thead class="thead-primary">
+                <tr class="text-center">
+                  <th>&nbsp;</th>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <?php
+
+                try {
+
+                  $order_id = $_GET['order_id'];
+
+                  $query = "SELECT cart.cart_id, products.id, products.name, products.photo, products.price, cart.quantity, (products.price * cart.quantity) AS 'total' FROM cart INNER JOIN products ON cart.product_id = products.id WHERE cart_code = " . $order_id . " GROUP BY cart.product_id ORDER BY cart_id";
+
+
+                  $rows = $function->selectAll($query);
+                  foreach ($rows as $row) { ?>
+
+                    <tr class="text-center">
+                      <td class="image-prod">
+                        <a class="img" style="background-image:url(<?php echo 'images/products/' . $row['photo']; ?>);"></a>
+                      </td>
+                      <td class="product-name">
+                        <h3><?php echo $row['name']; ?></h3>
+                      </td>
+                      <td class="price">PHP <?php echo number_format($row['price'], 2); ?></td>
+                      <td class="quantity">
+                        <div class="input-group">
+                          <input type="text" class="form-control" value="<?php echo $row['quantity']; ?>" disabled>
+                        </div>
+                      </td>
+                    </tr>
+
+                <?php
+                  }
+                } catch (PDOException $e) {
+                  echo "There is some problem in connection: " . $e->getMessage();
+                }
+
+
+
+                ?>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-</section>
+  </section>
 
-<!-- footer -->
-<?php include 'sections/footer.php'; ?>
-<!-- loader -->
-<?php include 'sections/loader.php'; ?>
-<!-- scripts -->
-<?php include 'sections/scripts.php'; ?>
+  <script>
+    document.getElementById('cancelOrderButton').addEventListener('click', function(event) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you really want to cancel the order?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, cancel it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          document.getElementById('cancelOrderForm').submit();
+        }
+      });
+    });
+  </script>
+  <!-- footer -->
+  <?php include 'sections/footer.php'; ?>
+  <!-- loader -->
+  <?php include 'sections/loader.php'; ?>
+  <!-- scripts -->
+  <?php include 'sections/scripts.php'; ?>
 
 </body>
+
 </html>

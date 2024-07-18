@@ -15,5 +15,4 @@
 <script src="js/google-map.js"></script>
 <script src="js/main.js"></script>
 <script src="js/parsley.min.js"></script>
-
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

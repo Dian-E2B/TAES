@@ -58,7 +58,7 @@ if (isset($_SESSION['is_logged_in'])) {
 				</li>
 				<li class="nav-item cta cta-colored">
 					<a href="cart.php" class="nav-link">
-						<span class="icon-shopping_cart"></span>[<?php echo $total_items; ?>]
+						<span class="icon-shopping_cart"></span><span class="" style="color: <?php echo ($total_items >= 1) ? 'snow' : ''; ?> !important;">[<?php echo $total_items; ?>]</span>
 					</a>
 				</li>
 			</ul>

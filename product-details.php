@@ -24,23 +24,10 @@
             <h3><?php echo $row['name']; ?></h3>
             <p class="price"><span>PHP <?php echo number_format($row['price'], 2); ?></span></p>
             <p><?php echo $row['description']; ?></p>
-            <div class="row mt-4">
-              <div class="w-100"></div>
-              <div class="input-group col-md-6 d-flex mb-3">
-                <span class="input-group-btn mr-2">
-                  <button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
-                    <i class="ion-ios-remove"></i>
-                  </button>
-                </span>
-                <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100" readonly="">
-                <span class="input-group-btn ml-2">
-                  <button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
-                    <i class="ion-ios-add"></i>
-                  </button>
-                </span>
-              </div>
-            </div>
-            <input type="submit" name="add-to-cart" class="btn btn-primary py-3 px-5" value="Add to Cart">
+
+            <a href="index.php?add-to-cart=<?php echo $row['id']; ?>" class="add-to-cart btn btn-primary py-3 px-5">
+              <span>Add to cart <i class="ion-ios-add ml-1"></i></span>
+            </a>
           </form>
         </div>
       </div>
@@ -55,43 +42,43 @@
   <?php include 'sections/scripts.php'; ?>
 
   <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
 
-      var quantitiy=0;
-      $('.quantity-right-plus').click(function(e){
+      var quantitiy = 0;
+      $('.quantity-right-plus').click(function(e) {
 
-    // Stop acting like a button
-    e.preventDefault();
-    // Get the field name
-    var quantity = parseInt($('#quantity').val());
+        // Stop acting like a button
+        e.preventDefault();
+        // Get the field name
+        var quantity = parseInt($('#quantity').val());
 
-    // If is not undefined
-    if (quantity<5) {
-      $('#quantity').val(quantity + 1);
+        // If is not undefined
+        if (quantity < 5) {
+          $('#quantity').val(quantity + 1);
 
-    }
+        }
 
-    // Increment
+        // Increment
 
-  });
+      });
 
-      $('.quantity-left-minus').click(function(e){
-    // Stop acting like a button
-    e.preventDefault();
-    // Get the field name
-    var quantity = parseInt($('#quantity').val());
+      $('.quantity-left-minus').click(function(e) {
+        // Stop acting like a button
+        e.preventDefault();
+        // Get the field name
+        var quantity = parseInt($('#quantity').val());
 
-    // If is not undefined
+        // If is not undefined
 
-    // Increment
-    if(quantity>1){
-      $('#quantity').val(quantity - 1);
-    }
-  });
+        // Increment
+        if (quantity > 1) {
+          $('#quantity').val(quantity - 1);
+        }
+      });
 
     });
-
   </script>
 
 </body>
+
 </html>

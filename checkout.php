@@ -34,13 +34,13 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="firstname">First Name</label>
-									<input type="text" name="firstname" class="form-control" value="<?php echo $user['firstname']; ?>" disabled>
+									<input type="text" name="firstname" class="form-control" style="color:black !important" value="<?php echo $user['firstname']; ?>" disabled>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="lastname">Last Name</label>
-									<input type="text" name="lastname" class="form-control" value="<?php echo $user['lastname']; ?>" disabled>
+									<input type="text" name="lastname" class="form-control" style="color:black !important" value="<?php echo $user['lastname']; ?>" disabled>
 								</div>
 							</div>
 							<div class="w-100"></div>
@@ -48,7 +48,7 @@
 							<div class="col-md-12">
 								<div class="form-group">
 									<label for="address">Address</label>
-									<input type="text" name="address" class="form-control" value="<?php echo $user['address']; ?>" required="">
+									<input style="color:black !important" type="text" name="address" class="form-control" value="<?php echo $user['address']; ?>" required="">
 								</div>
 							</div>
 							<div class="w-100"></div>
@@ -56,13 +56,13 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="contact">Phone</label>
-									<input type="text" name="contact" class="form-control" value="<?php echo $user['contact']; ?>" required="">
+									<input style="color:black !important" type="text" name="contact" class="form-control" value="<?php echo $user['contact']; ?>" required="">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="emailaddress">Email Address</label>
-									<input type="text" name="email-address" class="form-control" value="<?php echo $user['email']; ?>" disabled>
+									<input style="color:black !important" type="text" name="email-address" class="form-control" value="<?php echo $user['email']; ?>" disabled>
 								</div>
 							</div>
 							<div class="w-100"></div>
@@ -160,4 +160,5 @@
 	</script>
 
 </body>
+
 </html>

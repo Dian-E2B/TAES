@@ -8,17 +8,16 @@ session_start();
 if (isset($_GET['product_id'])) {
 	$product_id = $_GET['product_id'];
 	$row = $function->getData('products', 'id', $product_id);
-} 
+}
 
 if (isset($_SESSION['is_logged_in'])) {
 
 	$user_id =  $_SESSION['user']['id'];
 
-  //add product to cart
+	//add product to cart
 	if (isset($_POST['add-to-cart'])) {
 
 		$data = [
-			'cart_code' => 1,
 			'user_id' => $user_id,
 			'product_id' => $product_id
 		];
@@ -35,7 +34,6 @@ if (isset($_SESSION['is_logged_in'])) {
 
 			$query = "INSERT INTO cart (user_id, product_id, quantity) VALUES (:user_id, :product_id, :quantity)";
 			$function->insert($query, $data);
-
 		} else {
 
 			$quantity = $_POST['quantity'] + $product['quantity'];
@@ -47,12 +45,9 @@ if (isset($_SESSION['is_logged_in'])) {
 
 			$query = "UPDATE cart SET quantity = :quantity WHERE cart_code = 1 AND user_id = :user_id AND product_id = :product_id";
 			$function->update($query, $data);
-
 		}
 		header('Location: cart.php');
-
-	} 
-
+	}
 } else {
 	if (isset($_POST['add-to-cart'])) {
 		header('Location: sign-in.php');

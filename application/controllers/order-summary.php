@@ -5,8 +5,7 @@ require_once 'application/config/functions.php';
 session_start();
 
 if (!isset($_SESSION['is_logged_in'])) {
-  header("Location:sign-in.php");
-
+	header("Location:sign-in.php");
 }
 
 
@@ -17,6 +16,4 @@ try {
 		$order_summary = $function->searchinOrders($data);
 	}
 } catch (Exception $e) {
-	
 }
-

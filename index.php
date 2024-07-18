@@ -61,7 +61,7 @@ if ($includeSweetAlert) {
 						<?php
 
 						try {
-							$query = "SELECT * FROM products WHERE QuantityInStock > 0 ORDER BY date_added DESC LIMIT 6";
+							$query = "SELECT * FROM products WHERE QuantityInStock > 0 AND product_status = 1 ORDER BY date_added DESC LIMIT 6";
 							$rows = $function->selectAll($query);
 							foreach ($rows as $row) { ?>
 								<div class="item">
@@ -114,11 +114,7 @@ if ($includeSweetAlert) {
 
 			try {
 
-				$query = "SELECT * FROM products 
-WHERE QuantityInStock > 0 
-ORDER BY id DESC 
-LIMIT 8;
-";
+				$query = "SELECT * FROM products WHERE QuantityInStock > 0 AND product_status = 1 ORDER BY id DESC LIMIT 8;";
 				$rows = $function->selectAll($query);
 				$counter = 0;
 
