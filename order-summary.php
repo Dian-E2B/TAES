@@ -60,14 +60,14 @@
             $order_id = $_GET['order_id'];
             $query1 = "SELECT ordered_date from orders where order_id = " . $order_id;
             $rows1 = $function->selectAll($query1);
-            $givenTime = new DateTime($rows1[0]['ordered_date']);
-            $currentTime = new DateTime();
+            $givenTime = new DateTime($rows1[0]['ordered_date'], new DateTimeZone('Asia/Singapore'));
+            $currentTime = new DateTime('now', new DateTimeZone('Asia/Singapore'));
             $interval = $currentTime->getTimestamp() - $givenTime->getTimestamp();
 
-            // Debugging output
+            /*   // Debugging output
             echo "Current Time: " . $currentTime->format('c') . "<br>";
             echo "Given Time: " . $givenTime->format('c') . "<br>";
-            echo "Interval: " . $interval . "<br>";
+            echo "Interval: " . $interval . "<br>"; */
 
             if ($interval < 600) {
             ?>
@@ -78,8 +78,9 @@
                 </form>
               </div>
             <?php
+            } else {
+              echo "More than 10 minutes have passed.";
             }
-
             ?>
           </div>
         </div>
